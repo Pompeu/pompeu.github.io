@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="pt-br"><head><title>Blog Limp</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/><meta name="description" content="Blog e Página pessoal, de um estudante e desenvolvedor, com foco em algoritmos, programação funcional e principalmente performance com uma pegada que busca interação entre academia e mercado, C/C++,  Java , Javascritp(nodeJS) e Python são as principais tecnologias abordadas."/><link rel="stylesheet" href="/stylus/style.css"/><link rel="icon" href="/images/favicon.ico"/></head><body><header class="header"><a href="/"><div class="mini-menu"></div></a><a href="/"><div class="header-img"></div></a><h2 class="heading">Web Developer, Brasilian jiujitsu Fighter and Student<a href="#inicio" role="button"><div class="down-img"></div></a><main class="heading-menu"><a href="/" class="heading-menu-li">Posts</a><span class="heading-menu-li-separetor">|</span><a href="/tutoriais" class="heading-menu-li">Tutoriais</a><span class="heading-menu-li-separetor">|</span><a href="/about" class="heading-menu-li">About</a></main></h2></header><div class="social-cont"><div class="social-img"><a href="https://twitter.com/Pompeulimp" class="img-twitter"></a><a href="https://www.youtube.com/channel/UCvSz51aSjjMNJ-L522hJUJg" class="img-youtube"></a><a href="https://www.facebook.com/itacir.pompeu" class="img-facebook"></a><a href="https://github.com/pompeu" class="img-github"></a></div></div><div class="search-input"><div class="styled-input"> <input id="find-btn" type="text" required="required"/><label>Buscar ...</label><span></span><span id="inicio" name="inicio"></span></div></div><div class="post-item"><div class="post-details"><div class="post-center"><a href="/"><button class="voltar-img tooltips"> <span class="tooltips">voltar</span><img src="/images/ic_arrow_back_48px.svg"/></button></a><br/><br/><br/><div><h1>Promise Nativa nodeJS(sem -harmony)</h1><p>No mundo assincrono do javascritp, as veses fica muito complexo entender o ciclo da informações,  o já fomoso e debatido callbackhell é realmente um problema na manutenção dos codigos, contudo um grande alternativa para resolver esse problema é usar as Promise.</p>
+<p>Vejamos um exemplo de callbackhell no codigo 01, pois bem callbackhell se da quando uma função necessita do resoltado de outra, basicamente é isso, contudo vale salientar que Promise não é a unica solução porem é uma das mais elengantes.</p>
+<center> <strong> Código 01 </strong></center>
+
+<pre><code class="language-js">
+function pessoas(cb) {
+  var fs = require(&#39;fs&#39;);
+  var assert = require(&#39;assert&#39;);
+  var allPersons = [];
+  fs.readFile(&#39;amigos.json&#39;,&#39;utf8&#39;, function(err , amigos){
+    if(!err){
+      fs.readFile(&#39;pessoas.json&#39;, &#39;utf8&#39;, function(err, pessoas){
+        if(!err){
+          allPersons = allPersons.concat(JSON.parse(amigos), JSON.parse(pessoas));
+          return cb(null,allPersons);
+        }else{
+          return cb(err, null);
+        }       
+      });
+    }else{ 
+      return cb(err, null);
+    }
+  });
+} 
+
+module.exports = pessoas;
+</code></pre>
+<p>O código 01, basicamente esta lendo dois json, concatenando eles e colocando eles em um Array e restornando eles na função, varias estretegias poderiam ser usadas para melhorar esse codigo, programação funcional, libs como lodash ou underscore (_.<em>**) ajudariam resolver o problema, os metodos Array.prototype.</em> poderiam facilmente resolver, porem em algumas sutiações nos desenvolvedores herdamos códigos para mantermos e nos deparamos com isso, no estado atual temos solução nativa que é ajuda muito.</p>
+<p>Quando  atulizei meu nodeJS para v0.12.7, me deparei com novo modulo nativo, Promise, pois bem eu percebi que não era um modolo....OMG,  não presciso importar nada para usar ele apenas uso e proto. Digitando no seu terminal node entranando no modo interativo do nodeJS e ditando Promise.+tab , pronto esta la Promise nativa.</p>
+<center> <strong> Fígura 01 </strong></center>
+
+<pre><code>user@user:~$ node
+&gt; Promise.
+Promise.__defineGetter__      Promise.__defineSetter__
+Promise.__lookupGetter__      Promise.__lookupSetter__
+Promise.__proto__             Promise.constructor
+Promise.hasOwnProperty        Promise.isPrototypeOf
+Promise.propertyIsEnumerable  Promise.toLocaleString
+Promise.toString              Promise.valueOf
+
+Promise.apply                 Promise.arguments
+Promise.bind                  Promise.call
+Promise.caller                Promise.length
+Promise.name                  
+
+Promise.accept                Promise.all
+Promise.defer                 Promise.prototype
+Promise.race                  Promise.reject
+Promise.resolve
+</code></pre><p>Fiquei empolado em ver compartilhei com os NODEROS do facebook e Twiter, e resolvi fazer esse poste e gravar um video de como usar o basico dessa funcionalidade que nodeJS tem agora, já havia visto que com uso da flag -harmony a Promise fucionava acho que nave v0.11.4+, porem agora roda sosinho sem flag. Vamos voltar ao código para deixar ele mais organizado e legivel, vamos usar Promise.</p>
+<center> <strong> Código 02 </strong></center>
+
+<pre><code class="language-js">
+function fileOpen (path, encoding) {
+  var fs = require(&#39;fs&#39;);
+  return new Promise(function(resolve, reject) {
+    fs.readFile(path, encoding , function (err, res) {
+      if (res) { resolve(res);}
+      else { reject(new Error(err));}
+    });
+  });
+}
+
+module.exports = fileOpen;
+</code></pre>
+<p>É nitido! o segundo modulo possue uma simplicidade muito maior de implementação, e laramente pode ser reusado por conta da flexibilidade que foi escrito,  código 01 se foce criado para reuso a complexidade ficaria ainda maior tornando-o muito duro de manter, lembrando que são dois simples json, imagine se foce varias consoltas ao DB ou varios request http? seria &quot;imanutentivel&quot; (KKKKKK)Agora vamos passar para a parte do usuario das duas api criadas, Quando forem consumir as apis que é unir dois jsons.</p>
+<p>Um detalhe se por algum motivo aparecer tiver outro json a primeira api já quebra a segunda não e vamos verificar a baixo por que não.O codigo 03 representa o client do proprio nodeJS, que poderia ser no navegador caso usasemos chrom e ajax, ele vai apenes usar a api e mostra os JSONs, pois bem vamos ao código.</p>
+<center> <strong> Código 03 </strong></center>
+
+<pre><code class="language-js">var fileOpenCb = require(&#39;./pessoascb&#39;);
+
+fileOpenCb(function(err ,data) {
+  console.log(data);
+});
+</code></pre>
+<p>Sim eu concordo que uso dele é muito simples para quem entende de javascritp, vamos para uso do proximo? que é a Promise nativa.</p>
+<pre><code class="language-js">var fileOpen = require(&#39;./passoaspromise&#39;);
+
+fileOpen(&#39;pessoas.json&#39;,&#39;utf-8&#39;)   
+  .then(console.log,console.error);
+
+Promise
+  .all([fileOpen(&#39;pessoas.json&#39;,&#39;utf-8&#39;),
+
+  fileOpen(&#39;amigos.json&#39;,&#39;utf-8&#39;)])
+    .then(console.log,console.error);
+    .catch(console.log)
+</code></pre>
+<p>  Percebe-se que o codigo é maior ok? contudo a flexibilidade do código é linda, tento visto que se existir varios JSONs, basta passar o path e o encoding de cada um deles para usalos, no Promise.all([]) ele recebe um array de promises e resolve todas no method then , caso tenha erro? use o catch ok ele pego os erros.<center>  <h1>Conclusão</h1></center>É isso galera apenas para concluir a intenção não mostrar a fundo que é Promise, mais sim mostrar que o CoreTeam do nodeJS não esta paradado estão de fato trabalhando e acopnhando a evolução do V8, para  que possamos a cada dia ter coisas melhores e padronizadas e a Promise.</p></div><div class="compartilhar"><h1>Compartilhe</h1><div class="icon"><button href="" class="face-icon tooltips"><span class="tooltips">Facebook</span><img src="/images/facebook-icon.svg"/></button><button href="" class="twitter-icon tooltips"> <span class="tooltips">Twitter</span><img src="/images/twitter-icon.svg"/></button><button href="" class="google-icon tooltips"> <span class="tooltips">Google Plus</span><img src="/images/google-plus-icon.svg"/></button></div></div></div><div class="post-details"><div class="post-disqus"><div id="disqus_thread"><script>var url = window.location.href;
+var disqus_shortname = "pompeu-blog";
+var disqus_identifier = url;
+var disqus_title  = url.toString().substring(31);
+var disqus_url = url;
+(function() {
+var dsq = document.createElement('script');
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0].appendChild(dsq);
+}());</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></noscript></div></div></div></div></div><footer class="footer"><h2 class="footer-title">Pompeu - 2015</h2></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-53520427-1', 'auto');
+ ga('send', 'pageview');</script></body></html>

@@ -1,0 +1,17 @@
+for article, slug in public.articles._data
+  article.post-item
+    .post-center
+      a(href="/articles/#{slug}")
+        .post-date
+          .post-day #{article.day}
+          .post-mon-year #{article.date} 
+      a(href="/articles/#{slug}")
+        h1.post-title #{article.title}
+      .post-body
+        div #{article.resumo}
+        a(href="/articles/#{slug}") Ler Mais Sobre
+      .post-tags
+        each tag in article.tags.split(',')
+          a(href="#{tag}")
+            span(class="post-tag") #{tag}
+    hr

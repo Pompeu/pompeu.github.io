@@ -1,0 +1,25 @@
+{
+  "name": "src",
+  "version": "0.0.1",
+  "authors": [
+    "Pompeu <itacir@hotmail.com>"
+  ],
+  "description": "frontblog",
+  "main": "app.js",
+  "keywords": [
+    "blog"
+  ],
+  "license": "MIT",
+  "homepage": "pompeu.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "markdown-it": "~4.4.0",
+    "highlightjs": "~8.7.0"
+  }
+}

@@ -1,0 +1,26 @@
+.post-item
+  .post-details
+    .post-center
+      a(href="/")
+        button(class="voltar-img tooltips") 
+          span.tooltips voltar
+          img(src="/images/ic_arrow_back_48px.svg")
+      br
+      br
+      br
+      div
+        != yield
+      .compartilhar
+        h1 Compartilhe
+        .icon
+          button(class="face-icon tooltips", href="")
+            span.tooltips Facebook
+            img(src="/images/facebook-icon.svg") 
+          button(class="twitter-icon tooltips", href="")  
+            span.tooltips Twitter
+            img(src="/images/twitter-icon.svg")  
+          button(class="google-icon tooltips", href="") 
+            span.tooltips Google Plus
+            img(src="/images/google-plus-icon.svg")
+
+    != partial("../_partials/_diqus") 

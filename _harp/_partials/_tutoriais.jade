@@ -1,0 +1,6 @@
+for video, slug in public.tutoriais._data 
+  .post-item
+     .tutorial
+      .youtube-embed
+        a(href="#{video.link}")
+          h1 #{video.title}
