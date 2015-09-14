@@ -13,14 +13,13 @@
       .compartilhar
         h1 Compartilhe
         .icon
-          button(class="face-icon tooltips", href="")
+          a(class="face-icon tooltips", href="https://www.facebook.com/sharer/sharer.php?u=this.href'" onclick="window.open(this.href, 'facebook-share','width=550,height=235');return false;")
             span.tooltips Facebook
-            img(src="/images/facebook-icon.svg") 
-          button(class="twitter-icon tooltips", href="")  
+            img(src="/images/facebook-icon.svg")
+          a(class="twitter-icon tooltips", href="" onclick="window.open(this.href, 'twitter-share','width=550,height=235');return false;")  
             span.tooltips Twitter
-            img(src="/images/twitter-icon.svg")  
-          button(class="google-icon tooltips", href="") 
+            img(src="/images/twitter-icon.svg")
+          a(class="google-icon tooltips",href="https://plus.google.com/share?url=",onclick="window.open(this.href, 'google-plus-share','width=550,height=235');return false;") 
             span.tooltips Google Plus
             img(src="/images/google-plus-icon.svg")
-
-    != partial("../_partials/_diqus") 
+      != partial("../_partials/_diqus") 
