@@ -1,8 +1,8 @@
-# Promise Nativa nodeJS(sem -harmony)
+﻿# Promise Nativa nodeJS(sem -harmony)
 
-No mundo assincrono do javascritp, as veses fica muito complexo entender o ciclo da informações,  o já fomoso e debatido callbackhell é realmente um problema na manutenção dos codigos, contudo um grande alternativa para resolver esse problema é usar as Promise.
+No mundo assíncrono do javascritp, as vezes fica muito complexo entender o ciclo da informações,  o já famoso e debatido callbackhell é realmente um problema na manutenção dos códigos, contudo um grande alternativa para resolver esse problema é usar as Promise.
 
-Vejamos um exemplo de callbackhell no codigo 01, pois bem callbackhell se da quando uma função necessita do resoltado de outra, basicamente é isso, contudo vale salientar que Promise não é a unica solução porem é uma das mais elengantes.
+Vejamos um exemplo de callbackhell no código 01, pois bem callbackhell se da quando uma função necessita do resultado de outra, basicamente é isso, contudo vale salientar que Promise não é a única solução porem é uma das mais elegantes.
 
 <center> <strong> Código 01 </strong></center>
 
@@ -32,9 +32,9 @@ module.exports = pessoas;
 
 ```
 
-O código 01, basicamente esta lendo dois json, concatenando eles e colocando eles em um Array e restornando eles na função, varias estretegias poderiam ser usadas para melhorar esse codigo, programação funcional, libs como lodash ou underscore (_.***) ajudariam resolver o problema, os metodos Array.prototype.* poderiam facilmente resolver, porem em algumas sutiações nos desenvolvedores herdamos códigos para mantermos e nos deparamos com isso, no estado atual temos solução nativa que é ajuda muito.
+O código 01, basicamente esta lendo dois json, concatenando eles e colocando eles em um Array e retornando eles na função, varias estrategias poderiam ser usadas para melhorar esse código, programação funcional, libs como lodash ou underscore (_.***) ajudariam resolver o problema, os métodos Array.prototype.* poderiam facilmente resolver, porem em algumas situações nos desenvolvedores herdamos códigos para mantermos e nos deparamos com isso, no estado atual temos solução nativa que é ajuda muito.
 
-Quando  atulizei meu nodeJS para v0.12.7, me deparei com novo modulo nativo, Promise, pois bem eu percebi que não era um modolo....OMG,  não presciso importar nada para usar ele apenas uso e proto. Digitando no seu terminal node entranando no modo interativo do nodeJS e ditando Promise.+tab , pronto esta la Promise nativa.
+Quando  atualizei meu nodeJS para v0.12.7, me deparei com novo modulo nativo, Promise, pois bem eu percebi que não era um modulo....OMG,  não preciso importar nada para usar ele apenas uso e proto. Digitando no seu terminal node entretanto no modo interativo do nodeJS e ditando Promise.+tab , pronto esta la Promise nativa.
 
 <center> <strong> Fígura 01 </strong></center>
 
@@ -59,7 +59,7 @@ Promise.race                  Promise.reject
 Promise.resolve
 
 ```
-Fiquei empolado em ver compartilhei com os NODEROS do facebook e Twiter, e resolvi fazer esse poste e gravar um video de como usar o basico dessa funcionalidade que nodeJS tem agora, já havia visto que com uso da flag -harmony a Promise fucionava acho que nave v0.11.4+, porem agora roda sosinho sem flag. Vamos voltar ao código para deixar ele mais organizado e legivel, vamos usar Promise.
+Fiquei empolado em ver compartilhei com os NODEROS do facebook e Twiter, e resolvi fazer esse poste e gravar um video de como usar o basico dessa funcionalidade que nodeJS tem agora, já havia visto que com uso da flag -harmony a Promise funcionava acho que nave v0.11.4+, porem agora roda sozinho sem flag. Vamos voltar ao código para deixar ele mais organizado e legível, vamos usar Promise.
 
 <center> <strong> Código 02 </strong></center>
 
@@ -79,9 +79,9 @@ module.exports = fileOpen;
 
 ```
 
-É nitido! o segundo modulo possue uma simplicidade muito maior de implementação, e laramente pode ser reusado por conta da flexibilidade que foi escrito,  código 01 se foce criado para reuso a complexidade ficaria ainda maior tornando-o muito duro de manter, lembrando que são dois simples json, imagine se foce varias consoltas ao DB ou varios request http? seria "imanutentivel" (KKKKKK)Agora vamos passar para a parte do usuario das duas api criadas, Quando forem consumir as apis que é unir dois jsons.
+É nítido! o segundo modulo possui uma simplicidade maior quanto à implementação, e claramente pode ser reusado por conta da flexibilidade que foi escrito,  o código 01 se fosse criado para reuso a complexidade ficaria ainda maior, tornando-o muito duro de manter, lembrando que são dois simples json, imagine se fosse varias consultas a um DB ou requests http? seria "imanutentivel"(KKKKKK) Agora vamos passar para a parte do usuário das api criadas, Quando forem consumir as apis que é unir dois jsons.
 
-Um detalhe se por algum motivo aparecer tiver outro json a primeira api já quebra a segunda não e vamos verificar a baixo por que não.O codigo 03 representa o client do proprio nodeJS, que poderia ser no navegador caso usasemos chrom e ajax, ele vai apenes usar a api e mostra os JSONs, pois bem vamos ao código.
+Um detalhe se por algum motivo aparecer a necessidade de um novo json ser usado a primeira api já quebra e a segunda não, vamos verificar a baixo o por que disso. O código 03 representa o client do próprio nodeJS, que poderia ser no navegador caso usássemos google chrome e ajax, esse caso vai apenas usar a api e mostrar os JSONs, pois bem vamos ao código.
 
 <center> <strong> Código 03 </strong></center>
 
@@ -94,7 +94,7 @@ fileOpenCb(function(err ,data) {
 
 ```
 
-Sim eu concordo que uso dele é muito simples para quem entende de javascritp, vamos para uso do proximo? que é a Promise nativa.
+Sim eu concordo que uso dele é muito simples para quem entende de javascritp, vamos para uso do próximo? O da Promise nativa.
 
 ```js
 var fileOpen = require('./passoaspromise');
@@ -110,4 +110,4 @@ Promise
     .catch(console.log)
 
 ```
-  Percebe-se que o codigo é maior ok? contudo a flexibilidade do código é linda, tento visto que se existir varios JSONs, basta passar o path e o encoding de cada um deles para usalos, no Promise.all([]) ele recebe um array de promises e resolve todas no method then , caso tenha erro? use o catch ok ele pego os erros.<center>  <h1>Conclusão</h1></center>É isso galera apenas para concluir a intenção não mostrar a fundo que é Promise, mais sim mostrar que o CoreTeam do nodeJS não esta paradado estão de fato trabalhando e acopnhando a evolução do V8, para  que possamos a cada dia ter coisas melhores e padronizadas e a Promise.
+  Percebe-se que o código é maior ok mais isso foi de proposito, se observar com calma a flexibilidade do código é linda, tento visto que se existir vários JSONs, basta passar o path e o encoding de cada um deles para fazer sua leitura, o Promise.all([]) faz todo trabalho recebendo um array de promises e resolve todas no method then, caso tenha erro use o catch para tratalos.<center>  <h1>Conclusão</h1></center>É isso galera apenas para concluir a intenção não mostrar a fundo que é Promise, mais sim mostrar que o CoreTeam do nodeJS não esta parado estão de fato trabalhando e acompanhando a evolução do V8, para  que possamos a cada ter features novas.
