@@ -2,37 +2,37 @@
   "liberando-acesso-cors-nodejs": { 
       "title" : "Como liberar acesso para o Ajax NodeJS Http 1.1 CORS ",
       "describe" : "Esse video demonstra como é simples liberar o acesso de um endpoint em  aplicaçôes web, muito bom para quem faz aplicativos mobile ou trabalha com angularJS/Ember.JS, contudo esse conceito pode ser aplicado em qualquer liguagem que implemente http 1.1 em suas requisições.",
-      "link" : "https://www.youtube.com/watch?v=b7qn6iceyGA",
+      "link" : "https://www.youtube.com/embed/b7qn6iceyGA",
       "giturl" : "https://github.com/Pompeu/Cors"
   },
  "gravando-imagens-no-mongodb" : { 
       "title" : "Video para gravação de imagens  no mongo DB MEAN",
       "describe" : "Gravando imagens no MongoDB usando NodeJS, AngularJs e Formidable ",
-      "link" : "https://www.youtube.com/watch?v=fl3hoCwvgsI",
+      "link" : "https://www.youtube.com/embed/fl3hoCwvgsI",
       "giturl" : "https://github.com/Pompeu/ImageUploadsMEAN"
   },
   "liberando-cors-java-servlet" : { 
       "title" : "Como liberar acesso para o Ajax JAVA Servlet Http 1.1 CORS ",
       "describe" : "Esse video demonstra como é simples liberar o acesso de um endpoint em aplicaçôes web, muito bom para quem faz aplicativos mobile ou trabalha com angularJS/Ember.JS, contudo esse conceito pode ser aplicado em qualquer liguagem que implemente http 1.1 em suas requisições.",
-      "link" : "https://www.youtube.com/watch?v=4Y6V5AXsBp8",
+      "link" : "https://www.youtube.com/embed/4Y6V5AXsBp8",
       "giturl" : "https://github.com/Pompeu/designpatterns"
   },
   "desafio-sinatra-vs-restify" : { 
       "title" : "Desafio Ruby(Sinatra) VS NodeJS(Restify)",
       "describe" : "Um video de comparação dessas duas tecnologias!",
-      "link" : "https://www.youtube.com/watch?v=6j_LK33k_38",
+      "link" : "https://www.youtube.com/embed/6j_LK33k_38",
       "giturl" : "#"
   },
   "desafio-slin-vs-restify" : { 
       "title" : "Desafio PhP(Slin) VS NodeJS(Restify)",
       "describe" : "Um video de comparação dessas duas tecnologias!",
-      "link" : "https://www.youtube.com/watch?v=LazgFwny67g",
+      "link" : "https://www.youtube.com/embed/LazgFwny67g",
       "giturl" : "#"
   },
   "desafio-flask-vs-restify" : { 
       "title" : "NodeJs(Restify) VS Flask(Python)",
       "describe" : "Um video de comparação dessas duas tecnologias!",
-      "link" : "https://www.youtube.com/watch?v=oI50I0WnpNE",
+      "link" : "https://www.youtube.com/embed/oI50I0WnpNE",
       "giturl" : "#"
   }
 }

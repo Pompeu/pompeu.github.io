@@ -2,5 +2,5 @@ for video, slug in public.tutoriais._data
   .post-item
      .tutorial
       .youtube-embed
-        a(href="#{video.link}")
-          h1 #{video.title}
+        h1=video.title
+        iframe(width="620" height="355" src="#{video.link}")
