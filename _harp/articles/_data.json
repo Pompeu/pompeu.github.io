@@ -4,14 +4,15 @@
     "date"  : "Nov/2015",
     "day"   : "25",
     "resumo": "promise nativa agora no nodejs de forma nativa",
-    "tags"  : "Node, Promise, Async"
-
+    "tags"  : "Node, Promise, Async",
+    "url"   : "http://pompeu.github.io/articles/promise-node"
   },
   "java-lambda" : {
     "title" : "Java Lambda",
     "date"  : "Nov/2014",
     "day"   : "22",
     "resumo": "java esta mais funcional do que nunca, lambda veio para ajudar",
-    "tags"  : "Java8, Lambda, Funcional"
+    "tags"  : "Java8, Lambda, Funcional",
+    "url"   : "http://pompeu.github.io/articles/java-lambda"
   }
 }
