@@ -1,1 +1,1 @@
-harp compile _harp ../
+harp compile _harp ./
