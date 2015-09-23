@@ -7,12 +7,12 @@
     "tags"  : "Node, Promise, Async",
     "url"   : "http://pompeu.github.io/articles/promise-node"
   },
-  "java-lambda" : {
-    "title" : "Java Lambda",
-    "date"  : "Nov/2014",
+  "resumo-pibic" : {
+    "title" : "Rede de Conhecimentos",
+    "date"  : "Set/2014",
     "day"   : "22",
-    "resumo": "java esta mais funcional do que nunca, lambda veio para ajudar",
-    "tags"  : "Java8, Lambda, Funcional",
-    "url"   : "http://pompeu.github.io/articles/java-lambda"
+    "resumo": "Rede de Conhecimentos um local de encontro de pesquisadores",
+    "tags"  : "Node, TDD, BDD",
+    "url"   : "http://pompeu.github.io/articles/resumo-pibic"
   }
 }
