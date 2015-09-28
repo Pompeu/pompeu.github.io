@@ -14,5 +14,13 @@
     "resumo": "Rede de Conhecimentos um local de encontro de pesquisadores",
     "tags"  : "Node, TDD, BDD",
     "url"   : "http://pompeu.github.io/articles/resumo-pibic"
+  },
+  "koajs-todo" : {
+    "title" : "Criando Uma API Rest com KOAJS e Node4 ",
+    "date"  : "Set/2014",
+    "day"   : "25",
+    "resumo": "Criando uma todolist, com koajs e node4, usando mocha chai para testar",
+    "tags"  : "Node, TDD, KOA",
+    "url"   : "http://pompeu.github.io/articles/koajs-todo"
   }
 }
