@@ -1,38 +1,41 @@
 (function(){
   var ajax =  new XMLHttpRequest();
   var posts = [];
+  var titles = [];
   ajax.open('get','articles/data.json',true);
   ajax.send();
   ajax.addEventListener('load',function respAjax(){
    posts = JSON.parse(ajax.response);
    posts = Object.keys(posts).map(function(key){
-     //testar .title
      return posts[key];
    });
   },false);
-
   var searchInput = document.querySelector('#find-btn');
+  var result = document.querySelector('.result');
 
-  searchInput.addEventListener("keyup", function() {
-    var valueOfInput = new RegExp(searchInput.value,'g');
-    var filterposts = [];
-    if(searchInput.value.length > 2){
-      filterposts = posts.filter(function(post){
-        return post.title.match(valueOfInput);
-      });
-      console.log(JSON.stringify(filterposts));
-    }
+  searchInput.addEventListener("keyup", function(ev) {
+      var valueOfInput = new RegExp(searchInput.value,'ig');
+      var filterposts = [];
+      if(searchInput.value.length){
+        filterposts = posts.filter(function(post, index, arr){
+          return post.title.match(valueOfInput);
+        });
+        //filterposts.forEach(print);
+        
+        function print(data){
+          var a = document.createElement("a");
+          a.href = data.url;
+          a.className = 'search'
+          a.innerHTML = data.title.toLowerCase();
+          var br = document.createElement("br");
+          result.appendChild(br);
+          result.appendChild(a);
+        }
+
+      } 
   });
-
-  angular.module('blog',['angucomplete-alt'])
-    .controller('AutoCompleteController',['$http',function($http){
-        var vm =  this;
-        $http.get('articles/data.json')
-          .success(function(data){
-           vm.posts = Object.keys(data).map(function(key){
-              return data[key];
-            });
-          });
-    }]);
+  function log(data){
+    return console.log(data);
+  }
 })();
 
