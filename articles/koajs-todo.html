@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="pt-br"><head><title>Blog Limp</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/><meta name="description" content="Blog e Página pessoal, de um estudante e desenvolvedor, com foco em algoritmos, programação funcional e principalmente performance com uma pegada que busca interação entre academia e mercado, C/C++,  Java , Javascritp(nodeJS) e Python são as principais tecnologias abordadas."/><link rel="stylesheet" href="/stylus/style.css"/><link rel="icon" href="/images/favicon.ico"/></head><body><header class="header"><div class="design-by"><a href="https://twitter.com/EulerGotardo" target="_blank">Design by @EulerGotardo</a></div><a href="/"><div class="mini-menu"></div></a><a href="/"><div class="header-img"></div></a><h2 class="heading">Web Developer, Brasilian jiujitsu Fighter and Student<a href="#inicio" role="button"><div class="down-img"></div></a><main class="heading-menu"><a href="/" class="heading-menu-li">Posts</a><span class="heading-menu-li-separetor">|</span><a href="/tutoriais" class="heading-menu-li">Tutoriais</a><span class="heading-menu-li-separetor">|</span><a href="/about" class="heading-menu-li">About</a></main></h2></header><div class="social-cont"><div class="social-img"><a href="https://twitter.com/Pompeulimp" class="img-twitter"></a><a href="https://www.youtube.com/channel/UCvSz51aSjjMNJ-L522hJUJg" class="img-youtube"></a><a href="https://www.facebook.com/itacir.pompeu" class="img-facebook"></a><a href="https://github.com/pompeu" class="img-github"></a></div></div><div class="search-input"><div class="styled-input"> <input id="find-btn" type="text" required="required"/><label>Buscar ...</label><span></span><span id="inicio" name="inicio"></span></div></div><div class="post-item"><div class="post-details"><div class="post-center"><a href="/"><button class="voltar-img tooltips"> <span class="tooltips">voltar</span><img src="/images/ic_arrow_back_48px.svg"/></button></a><br/><br/><br/><div><h1>Criando uma Api Rest com KoaJS Usando TDD/BDD</h1><h2>Dependências</h2><p>Primeiro vai precisar do node na versão 4.x.x e o mocha 2.X.X , o mocha deve ser instalado na sua versão global.</p>
+<p><a href="https://www.youtube.com/watch?v=LTyqMuc9Vjs" target="_blank"> Instalando node JS </a></p>
+<p>Para instalar do mocha basta apenas ter nodeJs instalado</p>
+<p>sudo npm install -g mocha</p>
+<h3>resultado</h3><pre><code class="language-shell">$ node -v 
+4.1.1
+$ mocha --version
+2.3.2
+sudo npm install -g mocha
+</code></pre>
+<h1>Começando o Projeto.</h1><pre><code class="language-shell">sudo npm init
+</code></pre>
+<p>Siga os passos preenchendo com seus dados os campos pedidos, esse comando npm init vai criar um arquivo o package.json, ele por sua vez é usado pelo npm para controlar suas depencias, instalando elas no projeto a partir dele.</p>
+<h3>instalando depencias do projeto</h3><pre><code class="language-shell">sudo npm install koa koa-router co-body mongoose --save
+sudo npm  i superagent chai charlatan --save-dev
+</code></pre>
+<p>Esses dois comandos vão instalar as dependências do projeto, e ira salva-las no arquivo package.json, com isso seu projeto podera ser inicializado com tranquilidade.</p>
+<h3>cat package.json</h3><pre><code class="language-json">{
+ &quot;name&quot;: &quot;todo&quot;,
+ &quot;version&quot;: &quot;0.0.1&quot;,
+ &quot;description&quot;: &quot;todo pompeu&quot;,
+ &quot;#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+
+int main() {
+int i, y;
+scanf(&quot;%d&quot;, &amp;i);
+while(i--) {
+scanf(&quot;%d&quot;, &amp;y);
+}
+return 0;
+}&quot;: &quot;app.js&quot;,
+ &quot;scripts&quot;: {
+   &quot;test&quot;: &quot;mocha&quot;
+ },
+ &quot;keywords&quot;: [
+   &quot;todo&quot;,
+   &quot;list&quot;
+ ],
+ &quot;author&quot;: &quot;Itacir Ferreira Pompeu&quot;,
+ &quot;license&quot;: &quot;MIT&quot;,
+ &quot;devDependencies&quot;: {
+   &quot;chai&quot;: &quot;^3.2.0&quot;,
+   &quot;charlatan&quot;: &quot;^1.0.0&quot;,
+   &quot;superagent&quot;: &quot;^1.3.0&quot;
+ },
+ &quot;dependencies&quot;: {
+   &quot;koa&quot;: &quot;^1.0.0&quot;,
+   &quot;koa-router&quot;: &quot;^5.1.2&quot;,
+   &quot;mongoose&quot;: &quot;^4.1.6&quot;,
+ }
+}
+</code></pre>
+<h1>Criando o app.js</h1><p>Por uma convenção da comunidade, a base estrutural de um projeto node fica no app.js, ele deve ficar na raiz do projeto, basicamente nesse caso em especial, são as  configurações do <a href="http://koajs.com/" target="_blank">koajs</a> que seguem o mesmo estilo do express porem com varias melhorias internas, o Koa se vale de rotas e middlewares para facilitar a criação de aplicações, api restful entre outras.</p>
+<h3>configurando o app.js</h3><p>Declarando as depencias, e configurando o inicio do projeto.</p>
+<pre><code class="language-js">&#39;use strict&#39;;
+
+let koa =  require(&#39;koa&#39;);
+let app = module.exports = koa();
+let mongoose = require(&#39;mongoose&#39;);
+//conectando ao mongodb 
+//ele deve estar instalado
+mongoose.connect(&#39;mongodb://localhost/todo&#39;);
+
+app.listen(5000);
+</code></pre>
+<h4>conectando com mongoose</h4><p>Antes de começar a codificação do model certifique-se que mongodb esteja instalado.</p>
+<pre><code class="language-shell">mongo --version
+MongoDB shell version: 2.6.11
+</code></pre>
+<p>Caso o mongodb não esteja instalando você tera duas opções instalar o <a href="https://www.mongodb.org/downloads#production" target="_blank">mongodb</a> em seu SO, ou usar o <a href="https://mongolab.com/" target="_blank">mongolab</a>, a instalação do mongodb  é simples e uso do mongolab é muito simples basta seguir a instruções dos sites.</p>
+<p>Terminando essa parte pode agora dar inicio a a criação do primeiro teste, que var testar o model do projeto.</p>
+<h1>Criando o Primeiro Teste</h1><p>O Primeiro teste do model, este teste serve apenas para certificar que model e projeto esta funcionando de forma esperada, com seus atributos corretos.</p>
+<h3>lista dos atributos</h3><p>O model vai ser chamar TODO, ele devera ter id de intenficação, uma campo para listar os detalhes, data de inicio, e o status da todo.</p>
+<p>Deve-se criar uma pasta de testes, um arquivo index.js e outro todo.test.js, o primeiro deve conter um simples export dos teste, ele sera lido pelo mocha, e o segundo arquivo tera os testes que usara o chai.should() para testar o comportamento esperado.</p>
+<p>O arquivo de testes deve ter a seguinte nomenclatura a baixo.</p>
+<pre><code class="language-js">// file: tests/todo.test.js - created at 2015-09-09, 10:40
+&#39;use strict&#39;;
+
+let should = require(&#39;chai&#39;).should();
+let Todo = require(&#39;../models/todo&#39;);
+
+describe(&#39;todo&#39;,() =&gt; {
+
+ let todo = new Todo({ details : &quot;Nova Tarefa&quot; });
+
+ it(&#39;todo should be a object&#39;, () =&gt; {
+   todo.should.be.a(&#39;Object&#39;);
+ });
+
+ it(&#39;todo should have properts details isDone initalData&#39;, () =&gt; {
+   todo.should.have.property(&#39;details&#39;);
+   todo.should.have.property(&#39;isDone&#39;);
+   todo.should.have.property(&#39;initalData&#39;);
+ });
+
+ it(&#39;todo should dont be have details is empty and isDone start with false&#39;, () =&gt; {
+   todo.details.should.be.not.null;
+   todo.isDone.should.be.false
+ });
+
+});
+</code></pre>
+<p>Caso queira ver um video desse tutorial no <a href="https://www.youtube.com/watch?v=Ss-EaJPcfw8" target="blank"> youtube </a> voce vera um passo a passo  dos testes.</p>
+<h3>Rodando o Teste</h3><p>Na raiz do projeto rode o comando a seguir.</p>
+<pre><code class="language-shell">mocha teste/todo.test.js
+</code></pre>
+<p>Ele deve falhar por ainda não criamos o model.</p>
+<h1>Criando o Model</h1><p>Vamos criar uma pasta com nome de models, nela vamos colocar o arquivo index.js, nele deve conter a lista de todos models do projeto export.NAMEMODEL, o proximo arquivo deve ser o todo.js, que é o modelo que sera usado na pela api.</p>
+<h4>todo model</h4><pre><code class="language-js">cd todo/models/
+
+echo &quot;exports.Todo = require(&#39;./todo&#39;);&quot;  &gt;&gt;  index.js
+
+touch todo.js
+
+&#39;use strict&#39;;
+function todoHandler() {
+ let mongoose = require(&#39;mongoose&#39;);
+ let Schema = mongoose.Schema;
+ let schema = null;
+
+ schema = new Schema({
+  details    : { type : String,  required : true, trin : true},
+  isDone     : { type : Boolean, default : false},
+  initalData : { type : Date,    default : Date.now},
+ });
+
+ return mongoose.model(&#39;Todo&#39;, schema);
+}
+
+module.exports = exports = todoHandler();
+</code></pre>
+<p>com o model criado, agora volte ao teste e repita o comando mocha teste/todo.test.js, nesse momento ele deve passar e ficar verde, com uma mensagem de que os testes passaram.</p>
+<pre><code class="language-shell"> models test todo
+   ✓ should be todo a object
+   ✓ should be have in Todo, details , initalDate e isDone 
+   ✓ should be details isDone is false
+
+
+ 3 passing (16ms)
+</code></pre>
+<h3>video do teste da criação do model</h3><p>Assista o video pela <a href="https://www.youtube.com/watch?v=Ss-EaJPcfw8" target="_blank">WebSchool.io </a></p>
+<h1>Criando o Segundo Arquivo de Testes.</h1><p>Primeiramente, esse segundo teste que sera criado, tem por sua vez, testar o comportamento de todas a rotas da api, assim dando credibilidade as rotas estão ligadas ao controller, os controllers ligado ao model e que a resposta do controller esteja correta, respondendo o status http correto e o  JSON de resposta na body com os dados do model.</p>
+<p>O projeto deve estar rodando para isso basta rodar o comando nodemon app.js, em seguida da inicio a mais um arquivo de teste, o “touch tests/todo-ctrl.test.js”, esse por sua vez tera todos o testes, nesse momento deve-se ter conciencia que primeiro cria-se um teste, depois uma rota usando koa-router, adiciona-se está rota no app.js e em seguida cria-se o controller que nos dara o resultado esperado, que é esperado pelo chai.should().</p>
+<h3>Criando o teste para o controller e rotas.</h3><pre><code class="language-js">&#39;use strict&#39;;
+
+let should = require(&#39;chai&#39;).should();
+let request =  require(&#39;superagent&#39;);
+let ch =  require(&#39;charlatan&#39;);
+let url =  require(&#39;url&#39;);
+const ABS_URL = &#39;http://localhost:5000/api/v1/todos&#39;;
+
+describe(&#39;todoCtrl&#39;, () =&gt; {
+
+ let todo = {
+   details : ch.Name.title()
+ };
+ let id = null;
+
+ it(&#39;should be create a todo in api&#39;, (done) =&gt; {
+   request
+     .post(url.resolve(ABS_URL,&#39;todos&#39;))
+     .send(todo)
+     .end((err , res) =&gt; {
+       res.should.be.exist;
+       res.body.should.be.a(&#39;Object&#39;);
+       res.body._id.should.exist;
+       res.status.should.be.eql(201);
+       id = res.body._id;
+       done();
+     })
+ });
+
+ it(&#39;should be get one todo by id&#39;, (done) =&gt; {
+    request
+     .get(url.resolve(ABS_URL,&#39;todos/&#39;+id))
+     .end((err , res) =&gt; {
+       res.should.be.exist;
+       res.body.should.be.a(&#39;Object&#39;);
+       res.status.should.be.eql(200);
+       res.body._id.should.exist;
+       done();
+     })
+ });
+
+ it(&#39;should be getall todos&#39;, (done) =&gt; {
+    request
+     .get(url.resolve(ABS_URL,&#39;todos&#39;))
+     .end((err , res) =&gt; {
+       res.should.be.exist;
+       res.body.should.be.a(&#39;Array&#39;);
+       res.status.should.be.eql(200);
+       done();
+     })
+ });
+
+ it(&#39;should be update one todo by id set status true&#39;, (done) =&gt; {
+   var body = {
+     isDone : true  
+   };
+   request
+     .put(url.resolve(ABS_URL,&#39;todos/&#39;+id))
+     .send(body)
+     .end((err , res) =&gt; {
+       res.status.should.be.ok;
+       res.status.should.be.eql(202);
+       done();
+     });
+ });
+
+ it(&#39;should be delete one todo by id&#39; , (done) =&gt; {
+   request
+     .del(url.resolve(ABS_URL,&#39;todos/&#39;+id))
+     .end((err , res) =&gt; {
+       res.should.be.exist;
+       res.status.should.be.eql(204)
+       done();      
+     });
+ });
+
+});
+</code></pre>
+<h3>Criando a Rotas.</h3><p>Os arquivo de rotas de ficar num pasta chamada routes/, nela deve conter o index.js com os devidos exports e cada rota deve estar em um arquivo separado por exemplo todo.js.</p>
+<p>O arquivo todo.js de dentro da da pasta routes é um generator ok? que é usado com middleware polo koajs, para controlar o acesso ao controller da api.</p>
+<pre><code class="language-js">&#39;use strict&#39;;
+
+const apitodos = &#39;/api/v1/todos&#39;;
+let todoctrl = require(&#39;../controllers/todo&#39;);
+
+module.exports = require(&#39;koa-router&#39;)()
+     .get(apitodos+&#39;/:id&#39;,todoctrl.get)
+     .get(apitodos,todoctrl.getAll)
+     .post(apitodos,todoctrl.add)
+     .del(apitodos+&#39;/:id&#39;,todoctrl.del)
+     .put(apitodos+&#39;/:id&#39;,todoctrl.update)
+     .routes();
+</code></pre>
+<p>Cada rota do ali no router, segue sempre o mesmo estilo, primeiro VERBO http, em seguida a url, caso tenha algum paramento ele vem no final da url, e depois o controller, conforme o codigo de exemplo acima.</p>
+<p>Perceba que o arquivo de rotas possui um estilo bem limpo onde cada verbo usa uma function do controller, que é responsavel por apenas uma unica terefa.</p>
+<p>Agora o app.js devera ter o chamado dessa rota, e assim podera ser criado o controller.</p>
+<pre><code class="language-js">app.use(require(&#39;./routes/todo&#39;));
+</code></pre>
+<h1>Criando o Controller</h1><p>Agora chegou chegou o  momento de criar um controller, onde o uso do koajs e node na nova versão sera visto, e isso deixara o codigo muito limpo de simples de entender.</p>
+<p>O arquivo de controller tem como depencia o model e o co-body, e o model jé foi testado, a função do co-body e parsear as requisções do post e put, simplificando o trabalho do metodo e deixando ele mais limpo.</p>
+<p>Cada função exportada pelo controller, faz apenas uma atividade, que são elas responsaveis por criar os recursos, recuperar por id ou recuperar todas, atualizar pelo id  e excluir pelo id, isso é sim um CRUD.</p>
+<h4>codigo do controller.</h4><pre><code class="language-js">
+&#39;use strict&#39;;
+
+let Todo = require(&#39;../models/todo&#39;);
+let parse = require(&#39;co-body&#39;);
+
+module.exports.add = function *add() {
+ let todo = yield parse(this);
+ let createdTodo = yield Todo.create(todo);
+ if(createdTodo) {
+    this.status = 201;
+    this.set(&#39;location&#39;,&#39;/api/todos/&#39;+createdTodo._id);
+    this.body = createdTodo;
+ }else {
+     this.status = 404;
+ } 
+}
+
+module.exports.get = function *get() {
+ let getTodo = yield Todo.findOne({_id : this.params.id}).exec();
+ this.body = getTodo ? getTodo : this.status = 404;
+}
+
+module.exports.getAll = function *getAll() {
+ let allTodo = yield Todo.find({}).exec();
+ this.body = allTodo ? allTodo : this.status = 404;
+}
+
+module.exports.del = function *del (){
+ let delTodo = yield Todo.remove({_id : this.params.id});
+ this.status = delTodo ? this.status = 204 : this.stats = 404;
+}
+
+module.exports.update = function *update() {
+ let body = yield parse(this);
+ let updateTodo = yield Todo.update({_id : this.params.id},body);
+ if(updateTodo.nModified){
+    this.status = 202;
+    this.set(&#39;location&#39;,&#39;/api/todos/&#39;+this.params.id);
+ }else {
+     this.status = 404;
+ } 
+}
+</code></pre>
+<h1>Testando tudo que foi criado.</h1><p>Se voce chegou ate aqui parabens, voce acaba de ser introduzido ao mundo do node versão 4 e começa a aprender sobre o koajs, juntamente com algumas features do esc6, não fique desanimado , se você não entende bem sobre let, yield , generator pois e tudo isso veio para simplificar o codigo javascript, e vale muito a pena pesquisar.</p>
+<p>Pois bem agora e hora de finalizar o teste, rodando  o mocha lembrando que a aplicação deve estar em execução, tenha certeza disso rodando &quot;nodemon app.js&quot; OK.</p>
+<h4>rodando o test</h4><pre><code class="language-shell">mocha testes/index.js
+
+
+ models test todo
+   ✓ should be todo a object
+   ✓ should be have in Todo, details , initalDate e isDone 
+   ✓ should be details isDone is false
+
+ routes todo testing
+   ✓ should be create a todo (101ms)
+   ✓ should be get all todos
+   ✓ should be get one todo by id
+   ✓ should be updade one todo by id
+   ✓ should be delete one todo by id
+
+
+ 8 passing (165ms)
+</code></pre>
+<p>Então caso tenha feito tudo certinho, essa imagem deve ser vista com resultado de todos o teste passando, o link do reposito do git para consulta é esse <a href="" target="_blank">aqui</a> a video aula de como criar esse projeto pode ser vista no canal da <a href="https://www.youtube.com/playlist?list=PL77JVjKTJT2grcOd7WS8WaZiv6kH8fNIC" target="_blank"> webschol.io </a></p>
+<p>Então é isso qualquer duvida ou sugestão disqus me KKK.</p></div><div class="compartilhar"><h1>Compartilhe</h1><div class="icon"><a href="https://www.facebook.com/sharer/sharer.php?u=http://pompeu.github.io/articles/koajs-todo" onclick="window.open(this.href, 'facebook-share','width=550,height=235');return false;" class="face-icon tooltips"><span class="tooltips">Facebook</span><img src="/images/facebook-icon.svg"/></a><a href="https://twitter.com/intent/tweet?url=http://pompeu.github.io/articles/koajs-todo&amp;text=Criando uma todolist, com koajs e node4, usando mocha chai para testar&amp;via=Pompeulimp" onclick="window.open(this.href, 'twitter-share','width=550,height=235');return false;" class="twitter-icon tooltips"> <span class="tooltips">Twitter</span><img src="/images/twitter-icon.svg"/></a><a href="https://plus.google.com/share?url=http://pompeu.github.io/articles/koajs-todo" onclick="window.open(this.href, 'google-plus-share','width=550,height=235');return false;" class="google-icon tooltips"> <span class="tooltips">Google Plus</span><img src="/images/google-plus-icon.svg"/></a></div></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'pompeublog';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-53520427-1', 'auto');
+ ga('send', 'pageview');</script><footer class="footer"><h2 class="footer-title">Pompeu - 2015</h2></footer></body></html>
