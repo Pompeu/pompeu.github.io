@@ -16,39 +16,30 @@ sudo npm  i superagent chai charlatan --save-dev
 </code></pre>
 <p>Esses dois comandos vão instalar as dependências do projeto, e ira salva-las no arquivo package.json, com isso seu projeto podera ser inicializado com tranquilidade.</p>
 <h3>cat package.json</h3><pre><code class="language-json">{
- &quot;name&quot;: &quot;todo&quot;,
- &quot;version&quot;: &quot;0.0.1&quot;,
- &quot;description&quot;: &quot;todo pompeu&quot;,
- &quot;#include&lt;stdio.h&gt;
-#include&lt;string.h&gt;
-
-int main() {
-int i, y;
-scanf(&quot;%d&quot;, &amp;i);
-while(i--) {
-scanf(&quot;%d&quot;, &amp;y);
-}
-return 0;
-}&quot;: &quot;app.js&quot;,
- &quot;scripts&quot;: {
-   &quot;test&quot;: &quot;mocha&quot;
- },
- &quot;keywords&quot;: [
-   &quot;todo&quot;,
-   &quot;list&quot;
- ],
- &quot;author&quot;: &quot;Itacir Ferreira Pompeu&quot;,
- &quot;license&quot;: &quot;MIT&quot;,
- &quot;devDependencies&quot;: {
-   &quot;chai&quot;: &quot;^3.2.0&quot;,
-   &quot;charlatan&quot;: &quot;^1.0.0&quot;,
-   &quot;superagent&quot;: &quot;^1.3.0&quot;
- },
- &quot;dependencies&quot;: {
-   &quot;koa&quot;: &quot;^1.0.0&quot;,
-   &quot;koa-router&quot;: &quot;^5.1.2&quot;,
-   &quot;mongoose&quot;: &quot;^4.1.6&quot;,
- }
+  &quot;name&quot;: &quot;todo&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;todo pompeu&quot;,
+  &quot;main&quot;: &quot;app.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;mocha&quot;
+  },
+  &quot;keywords&quot;: [
+    &quot;todo&quot;,
+    &quot;list&quot;
+  ],
+  &quot;author&quot;: &quot;Itacir Ferreira Pompeu&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;chai&quot;: &quot;^3.2.0&quot;,
+    &quot;charlatan&quot;: &quot;^1.0.0&quot;,
+    &quot;superagent&quot;: &quot;^1.3.0&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;co-body&quot;: &quot;^4.0.0&quot;,
+    &quot;koa&quot;: &quot;^1.0.0&quot;,
+    &quot;koa-router&quot;: &quot;^5.1.2&quot;,
+    &quot;mongoose&quot;: &quot;^4.1.6&quot;
+  }
 }
 </code></pre>
 <h1>Criando o app.js</h1><p>Por uma convenção da comunidade, a base estrutural de um projeto node fica no app.js, ele deve ficar na raiz do projeto, basicamente nesse caso em especial, são as  configurações do <a href="http://koajs.com/" target="_blank">koajs</a> que seguem o mesmo estilo do express porem com varias melhorias internas, o Koa se vale de rotas e middlewares para facilitar a criação de aplicações, api restful entre outras.</p>

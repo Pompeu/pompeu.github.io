@@ -39,39 +39,30 @@ Esses dois comandos vão instalar as dependências do projeto, e ira salva-las n
 
 ```json
 {
- "name": "todo",
- "version": "0.0.1",
- "description": "todo pompeu",
- "#include<stdio.h>
-#include<string.h>
-
-int main() {
-int i, y;
-scanf("%d", &i);
-while(i--) {
-scanf("%d", &y);
-}
-return 0;
-}": "app.js",
- "scripts": {
-   "test": "mocha"
- },
- "keywords": [
-   "todo",
-   "list"
- ],
- "author": "Itacir Ferreira Pompeu",
- "license": "MIT",
- "devDependencies": {
-   "chai": "^3.2.0",
-   "charlatan": "^1.0.0",
-   "superagent": "^1.3.0"
- },
- "dependencies": {
-   "koa": "^1.0.0",
-   "koa-router": "^5.1.2",
-   "mongoose": "^4.1.6",
- }
+  "name": "todo",
+  "version": "0.0.1",
+  "description": "todo pompeu",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "todo",
+    "list"
+  ],
+  "author": "Itacir Ferreira Pompeu",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "charlatan": "^1.0.0",
+    "superagent": "^1.3.0"
+  },
+  "dependencies": {
+    "co-body": "^4.0.0",
+    "koa": "^1.0.0",
+    "koa-router": "^5.1.2",
+    "mongoose": "^4.1.6"
+  }
 }
 ```
 # Criando o app.js
