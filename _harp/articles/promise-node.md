@@ -1,6 +1,6 @@
 ﻿# Promise Nativa nodeJS(sem -harmony)
 
-No mundo assíncrono do javascritp, as vezes fica muito complexo entender o ciclo da informações,  o já famoso e debatido callbackhell é realmente um problema na manutenção dos códigos, contudo um grande alternativa para resolver esse problema é usar as Promise.
+No mundo assíncrono do javascript, as vezes fica muito complexo entender o ciclo da informações,  o já famoso e debatido callbackhell é realmente um problema na manutenção dos códigos, contudo um grande alternativa para resolver esse problema é usar as Promise.
 
 Vejamos um exemplo de callbackhell no código 01, pois bem callbackhell se da quando uma função necessita do resultado de outra, basicamente é isso, contudo vale salientar que Promise não é a única solução porem é uma das mais elegantes.
 
@@ -94,7 +94,7 @@ fileOpenCb(function(err ,data) {
 
 ```
 
-Sim eu concordo que uso dele é muito simples para quem entende de javascritp, vamos para uso do próximo? O da Promise nativa.
+Sim eu concordo que uso dele é muito simples para quem entende de javascript, vamos para uso do próximo? O da Promise nativa.
 
 ```js
 var fileOpen = require('./passoaspromise');

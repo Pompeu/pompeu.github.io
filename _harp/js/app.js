@@ -1,6 +1,6 @@
 (function(){
-  var ajax =  new XMLHttpRequest();
-  var posts = [];
+	var ajax =  new XMLHttpRequest();
+	var posts = [];
   var titles = [];
   ajax.open('get','articles/data.json',true);
   ajax.send();
