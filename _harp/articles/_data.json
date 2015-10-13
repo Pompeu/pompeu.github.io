@@ -1,13 +1,22 @@
 {
-  "promise-node" : {
-    "title" : "Promise Node",
-    "date"  : "Nov/2015",
-    "day"   : "25",
-    "resumo": "promise nativa agora no nodejs de forma nativa",
-    "tags"  : "Node, Promise, Async",
-    "url"   : "http://pompeu.github.io/articles/promise-node"
+	"promise-mito" : {
+    "title" : "Brincadeira com Promises no Banheiro",
+    "date"  : "Out/2015",
+    "day"   : "13",
+    "resumo": "Fui mijar agora e automaticamente fiz um algoritmo assíncrono com 2 funções encadeadas, como assim?",
+    "tags"  : "Node, Promise, Diversão",
+    "url"   : "http://pompeu.github.io/articles/promise-mito"
   },
-  "resumo-pibic" : {
+
+	 "koajs-todo" : {
+    "title" : "Criando Uma API Rest com KOAJS e Node4 ",
+    "date"  : "Set/2015",
+    "day"   : "28",
+    "resumo": "Criando uma todolist, com koajs e node4, usando mocha chai para testar",
+    "tags"  : "Node, TDD, KOA",
+    "url"   : "http://pompeu.github.io/articles/koajs-todo"
+  },
+	"resumo-pibic" : {
     "title" : "Rede de Conhecimentos",
     "date"  : "Set/2015",
     "day"   : "22",
@@ -15,12 +24,14 @@
     "tags"  : "Node, TDD, BDD",
     "url"   : "http://pompeu.github.io/articles/resumo-pibic"
   },
-  "koajs-todo" : {
-    "title" : "Criando Uma API Rest com KOAJS e Node4 ",
-    "date"  : "Set/2015",
-    "day"   : "28",
-    "resumo": "Criando uma todolist, com koajs e node4, usando mocha chai para testar",
-    "tags"  : "Node, TDD, KOA",
-    "url"   : "http://pompeu.github.io/articles/koajs-todo"
+
+  "promise-node" : {
+    "title" : "Promise Node",
+    "date"  : "Nov/2015",
+    "day"   : "25",
+    "resumo": "promise nativa agora no nodejs de forma nativa",
+    "tags"  : "Node, Promise, Async",
+    "url"   : "http://pompeu.github.io/articles/promise-node"
   }
+   	
 }
