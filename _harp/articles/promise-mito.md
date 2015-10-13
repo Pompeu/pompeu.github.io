@@ -5,11 +5,11 @@
 > Logo eu só pude acender a luz co a direita enquanto eu tirava meu fazedor de xixi com a esquerda.
 > Pelo menos foram 2 ações e paralela por vez, ou seja, uso de 100% da infraestrutura.
 > Assim que um programador mija.
-> By Jean Carlos Nascimento (Suissudo)
+> By Jean Carlo Nascimento (Suissudo)
 
 ## Vamos começar ?
 
-Certo primeiro passo que é uma Promise? Bem traduzindo a pé da letra Promise é promeça, trazendo isso para mundo do Javascript significa que um bloco de codigo sera resolvido assincronamente e ao final eu terei um resultado de sucesso ou erro, mais quando é esse final? não sei é assincrono, talvez não fique claro nesse momento porem vamos executar este algoritmo do Tio Suissa? Usando callbck e depois promise? Pois bem vamos começar.
+Certo primeiro passo que é uma Promise? Bem traduzindo a pé da letra Promise é promessa, trazendo isso para mundo do Javascript significa que um bloco de codigo sera resolvido assincronamente e ao final eu terei um resultado de sucesso ou erro, mais quando é esse final? não sei é assincrono, talvez não fique claro nesse momento porem vamos executar este algoritmo do Tio Suissa? Usando callbck e depois promise? Pois bem vamos começar.
 
 
 ## Entrando no banheiro com callback
