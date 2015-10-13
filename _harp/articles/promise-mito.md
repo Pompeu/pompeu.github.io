@@ -156,4 +156,4 @@ System-Product-Name:~/Documents/dev/node/teste$ node main_promise.js
 
 Pois é galera mais um post sobre promise, a pedidos do meu amigo Suissudo :P, qualquer duvida galera disqus-me.
 
-
+<a href="https://github.com/Pompeu/promise-mito" target="_blank"> GitHub Link </a>
