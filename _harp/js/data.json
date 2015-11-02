@@ -1,18 +1,18 @@
 [  
   {
     "title" : "Brincadeira com Promises no Banheiro",
-    "url"   : "/articles/promise-mito/"
+    "url"   : "/articles/promise-mito"
   },
   {
     "title" : "Criando Uma API Rest com KOAJS e Node4",
-    "url"   : "/articles/koajs-todo/"
+    "url"   : "/articles/koajs-todo"
   },
   {
     "title" : "Rede de Conhecimentos",
-    "url"   : "/articles/resumo-pibic/"
+    "url"   : "/articles/resumo-pibic"
   },
   { 
    "title" : "Promise Node",
-    "url"   : "/articles/promise-node/"
+    "url"   : "/articles/promise-node"
   }
 ]
