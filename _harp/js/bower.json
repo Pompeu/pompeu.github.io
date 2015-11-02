@@ -1,0 +1,21 @@
+{
+  "name": "js",
+  "homepage": "https://github.com/Pompeu/pompeu.github.io",
+  "authors": [
+    "Pompeu <itacir@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rxjs-dom": "rx-dom#~7.0.3"
+  }
+}
