@@ -118,3 +118,12 @@ Promise
 <center>  <h1>Conclusão</h1></center>
 
 Assim temino, esse poste galera apenas para concluir a intenção não mostrar a fundo que é Promise, mais sim mostrar que o CoreTeam do nodeJS não esta parado estão de fato trabalhando e acompanhando a evolução do V8, para  que possamos a cada ter features novas sempre.
+
+## Links para continuar
+
++ [Promise CookBook](https://github.com/mattdesl/promise-cookbook)
++ [Promise A+](https://www.promisejs.org/)
++ [Promise-mito](http://pompeu.github.io/articles/promise-mito)
++ [Mozilla Spec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 
++ [NomaDev](http://nomadev.com.br/javascript-promises/)
+
