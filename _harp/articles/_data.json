@@ -1,4 +1,20 @@
 {
+ "tdd-intro2" : {
+    "title" : "Introdução ao TDD com NodeJS Parte 2",
+    "date" : "Nov/2015",
+    "day" : "09",
+    "resumo" : "Essa é a Segunda parte da introdução ao TDD com node, nela sera implementa o restante dos testes e o algoritmo para resolver a conversão dos numeros romanos.",
+    "tags" : "TDD NODE, MOCHA",
+    "url" : "http://pompeu.github.io/articles/tdd-intro2"
+  },
+  "tdd-intro1" : {
+    "title" : "Introdução ao TDD com NodeJS Parte 1",
+    "date" : "Nov/2015",
+    "day" : "08",
+    "resumo" : "O desenvolvimento guiado por testes, e um cartucho deve estar no seu arsenal, ele de fato é uma metodologia muito atual e usada, pode ajudar na refatoraçao de codígo legado, pode encurtar caminhos para  contribuir para projetos opensource e claro deixar seus sistemas, simples e faceis de manter com codígos mais limpos.",
+    "tags" : "TDD NODE, MOCHA",
+    "url" : "http://pompeu.github.io/articles/tdd-intro1"
+  },
 	"promise-mito" : {
     "title" : "Brincadeira com Promises no Banheiro",
     "date"  : "Out/2015",

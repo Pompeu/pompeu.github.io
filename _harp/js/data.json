@@ -1,4 +1,8 @@
-[  
+[ 
+  {
+    "title" : "Introdução ao TDD com NodeJS",
+    "url"   : "/articles/tdd-intro1"
+  },
   {
     "title" : "Brincadeira com Promises no Banheiro",
     "url"   : "/articles/promise-mito"
