@@ -116,7 +116,7 @@ mocha conversor-romanos.spect.js
 ```
 
 <pre class=”green”>
-   ✓ deve entender  o simbolo I
+  <span> ✓ </span> deve entender  o simbolo I
 </pre>
 
 E agora que o teste passou, já sabemos como converter o romano I para valor 1. Vamos para o próximo teste?
@@ -157,8 +157,8 @@ mocha conversor-romanos.spect.js
 ```
 
 <pre class=”green”>
-   ✓ deve entender  o símbolo I
-   ✓ deve entender  o símbolo V
+   <span> ✓ </span>  deve entender  o símbolo I
+   <span> ✓ </span>  deve entender  o símbolo V
 </pre>
 
 
@@ -225,9 +225,9 @@ function  conversor() {
 Agora rodando o mocha, deverá ser vista a seguinte tela no seu terminal, onde todos os testes passaram.
 
 <pre class=”green”>
-  ✓ deve entender o símbolo I 
-  ✓ deve entender o símbolo V 
-  ✓ deve entender o símbolo M
+  <span> ✓ </span> deve entender o símbolo I 
+  <span> ✓ </span> deve entender o símbolo V 
+  <span> ✓ </span> deve entender o símbolo M
 </pre>
 
 Esse foi o final da parte 1 do tutorial de introdução ao TDD, esse exemplo foi tirado do livro TDD no mundo real, do grande Maurício Aniche, que é hoje na minha humilde opnião uma das maiores referências de TDD no mundo acadêmico, ele fez seu mestrado e agora faz doutorado sobre o assunto, tambem é professor na Caelum, ou seja, vale a pena seguir esse cara para quem quer aprofundar no assunto.

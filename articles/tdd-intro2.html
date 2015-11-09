@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="pt-br"><head><title>Blog Limp</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/><meta name="description" content="Blog e Página pessoal, de um estudante e desenvolvedor, com foco em algoritmos, programação funcional e principalmente performance com uma pegada que busca interação entre academia e mercado, C/C++,  Java , Javascritp(nodeJS) e Python são as principais tecnologias abordadas."/><link rel="stylesheet" href="/stylus/style.css"/><link rel="icon" href="/images/favicon.ico"/></head><body><header class="header"><div class="design-by"><a href="https://twitter.com/EulerGotardo" target="_blank">Design by @EulerGotardo</a></div><a href="/"><div class="mini-menu"></div></a><a href="/"><div class="header-img"></div></a><h2 class="heading">Web Developer, Brasilian jiujitsu Fighter and Student<a href="#inicio" role="button"><div class="down-img"></div></a><main class="heading-menu"><a href="/" class="heading-menu-li">Posts</a><span class="heading-menu-li-separetor">|</span><a href="/tutoriais" class="heading-menu-li">Tutoriais</a><span class="heading-menu-li-separetor">|</span><a href="/about" class="heading-menu-li">About</a></main></h2></header><div class="social-cont"><div class="social-img"><a href="https://twitter.com/Pompeulimp" class="img-twitter"></a><a href="https://www.youtube.com/channel/UCvSz51aSjjMNJ-L522hJUJg" class="img-youtube"></a><a href="https://www.facebook.com/itacir.pompeu" class="img-facebook"></a><a href="https://github.com/pompeu" class="img-github"></a></div></div><div class="search-input"><div class="styled-input"> <input id="q" type="text" required="required" autocomplete="off"/><label id="inicio" name="inicio">Buscar ...</label></div></div><div class="results"><ul id="results"></ul></div><div class="post-item"><div class="post-details"><div class="post-center"><a href="/"><button class="voltar-img tooltips"> <span class="tooltips">voltar</span><img src="/images/ic_arrow_back_48px.svg"/></button></a><br/><br/><br/><div><h1>Introdução ao TDD com NodeJS Part 2</h1><h2>Continuando...</h2><p>se você não viu a primeira parte leia ela <a href="tdd-intro1" target="_blank"> aki </a> </p>
+<h2>Test 4</h2><p>Se você chegou ate aqui parabens você realmente esta interessado em TDD, e isso vai ajudar você a ser um desenvolvedor melhor.</p>
+<p>Vamos escrever o teste 4, ele consiste em testar a entrada de dois algarismos romanos, por exemplo II deve retornar numero 2, então vamos criar o teste para esse caso.</p>
+<pre><code class="language-js">
+   it( &#39;deve entender  o simbolo II &#39;, done =&gt; {
+      let conversor = Conversor.converte(&quot;II&quot;);
+      assert.equal(2 , conversor);
+      done();
+   });
+</code></pre>
+<p>Rodando esse teste com o mocha ele falha, então seguindo o ciclo do TDD, vamos fazer uma implementação para que ele passe e fique verde.</p>
+<p>A função converte agora deve ser modificada de forma a acumular um valor de acordo com a entrada, ou seja se estamos recebendo II e sabemos ele é 2, uma variavel dera ir acumulando esse valor, vamos a nova implementação da função converte.</p>
+<pre><code class="language-js">  function  converte (romanNumber) {
+    let acc = 0;
+    //essa constante quando o tamanho da string de entrada
+    const romanNumberLen = ramanNumber.length;
+
+    for(let i = 0; i &lt; romanNumberLen; i++) {
+      /* 
+         esse caso o acumulador vai incrementando o valor
+         numerico referente ao algarismo romano em questão
+      */
+      acc +=  map.get(romanNumber.charAt(i));
+    }
+    return acc;
+  }
+</code></pre>
+<p>Agora é a hora de rodar o teste, e termos a resposta da implementação, vamos usar o mocha, e verificar o resultado que deve ser igual essa logo abaixo.</p>
+<pre class="”green”">
+  <span>✓</span> deve entender o símbolo I 
+  <span>✓</span> deve entender o símbolo V 
+  <span>✓</span> deve entender o símbolo M
+  <span>✓</span> deve entender o símbolo II
+</pre>
+
+<p>OK agora falta pouco para terminamos, vamos criar um test  novo para o valor XXII o número 22, vamos seguir os passos basicos do TDD, criamos o teste e rodamos o mocha, vejá abaixo a implementação do teste.</p>
+<h2>Teste 5</h2><pre><code class="language-js">   it( &#39;deve entender  o simbolo XXII &#39;, done =&gt; {
+      let conversor = Conversor.converte(&quot;XXII&quot;);
+      assert.equal(22 , conversor);
+      done();
+   });
+</code></pre>
+<pre class="”green”">
+  <span>✓</span> deve entender o símbolo I 
+  <span>✓</span> deve entender o símbolo V 
+  <span>✓</span> deve entender o símbolo M
+  <span>✓</span> deve entender o símbolo II
+  <span>✓</span> deve entender o símbolo XXII
+</pre>
+
+<p>É tivemos uma surpresinha o teste já passa, ou seja temos agora um conversor que é capaz de converter a maioria dos algarismos romanos, mais seu eu tiver o numero IX que é 9, sera que esse teste tambem passa? ou ele quebra? vamos criar esse caso de teste e verificar.</p>
+<h2>Test 6</h2><pre><code class="language-js">   it( &#39;deve entender  o simbolo IX &#39;, done =&gt; {
+      let conversor = Conversor.converte(&quot;IX&quot;);
+      assert.equal(9 , conversor);
+      done();
+   });
+</code></pre>
+<p>Rodando o teste é verificado que ele falha? então esse tipo de algoritmo o nosso conversor não esta preparado para tratar, vamos agora trabalhar em um novo algoritmo que possa resolver esse problema e assim terminar nosso conversor.</p>
+<p>Essa implementação deve ser simples, quando estiver implementando algo usando TDD ou não, prese sempre pela implementação mais simples possivel, pois no futuro sera melhor para que outros programadores entender seu codigo e assim ele tera um vida maior.</p>
+<p>Verifique a nova estrutura da função converte que vem logo abaixo, agora ele possui um algoritmo mais robusto, ele faz a verificação dos algarismos, de uma forma que ele possa converter de para o valor esperado qualquer número romano que ela recebe como argumento.</p>
+<pre><code class="language-js">
+function converte (romanNumber) {
+    let acc = 0;
+    const romanNumberLen =  romanNumber.length;
+    /*
+ garda o valor o ultimo numero da direita
+para trabalhar com ele no acumulador
+    */
+    let ultimoVizinhoDaDireita = 0;
+    /*
+      temos que mudar o ciclo do “for” para que ele possa trabalhar
+      a nosso favor.
+    */
+    for(let i = romanNumber.length - 1; i &gt;= 0; i--) { 
+      // guardando o valor atual
+      let atual = map.get(romanNumber.charAt(i));
+      /*
+        o multiplicador recebe 1 se o valor atual for menor que ultimo vizinho da
+        diretira e -1 para fazer o descremento se ele não for.
+        Foi usado operador  ternario para simplificar do codigo.
+      */
+      let multiplicador = (atual &lt; ultimoVizinhoDaDireita) ? -1 : 1;
+      /*
+        aqui o acumulador vai incrementando o valor atual multiplicado
+        por 1 ou  -1 dependendo do seu valor.
+      */
+      acc += atual * multiplicador;
+
+      ultimoVizinhoDaDireita = atual;
+    }
+    return acc;
+  }
+</code></pre>
+<p>Agora chegou o momento esperado onde vamos rodar o ultimo teste, caso ele passe podemos ficar livre para fazer um  refactor, ou não ok?</p>
+<pre class="”green”">
+  <span> ✓ </span> deve entender o símbolo I 
+  <span> ✓ </span> deve entender o símbolo V 
+  <span> ✓ </span> deve entender o símbolo M
+  <span> ✓ </span> deve entender o símbolo II
+  <span> ✓ </span> deve entender o símbolo XXII
+  <span> ✓ </span> deve entender o símbolo IX 
+</pre>
+
+<p>Então terminamos, todos os testes passaram, fica um desafio para quem leu, procure algum site de Coding Kata, tente implementar outros desafios para melhorar seu conhecimento em teste automatizados, sinta se a vontade de me procurar no twitter ou facebook para conversar sobre TDD, eu gostaria muito de aprender mais em uma boa discrusão.</p>
+<p>O codigo final de exemplo esta no gist, pode ser acessado nos link abaixo:</p>
+<ul>
+<li><a href="https://gist.github.com/Pompeu/06e78c4f66c4b9fc0211" target="_blank"> Testes </a></li>
+<li><a href="https://gist.github.com/Pompeu/57841bcb56cbfa358970" targe="_black"> Model </a></li>
+</ul>
+<h1>Conclusão</h1><p>Não perca tempo com teste manuais, busque ferramentas como o mocha, em sua linguagem de programação favorita e use-o e ganhe tempo.</p>
+<p>O TDD hoje é de fato algo como o ingles, deixou de ser um diferencial, e passou a ser algo esperado de todo bom programador, ou seja aprenda o mais breve possivel.</p>
+<p>Pratique, pratique e pratique. </p>
+<p>Obrigado a todos JS é o Poder S2.</p></div><div class="compartilhar"><h1>Compartilhe</h1><div class="icon"><a href="https://www.facebook.com/sharer/sharer.php?u=http://pompeu.github.io/articles/tdd-intro2" onclick="window.open(this.href, 'facebook-share','width=550,height=235');return false;" class="face-icon tooltips"><span class="tooltips">Facebook</span><img src="/images/facebook-icon.svg"/></a><a href="https://twitter.com/intent/tweet?url=http://pompeu.github.io/articles/tdd-intro2&amp;text=Essa é a Segunda parte da introdução ao TDD com node, nela sera implementa o restante dos testes e o algoritmo para resolver a conversão dos numeros romanos.&amp;via=Pompeulimp" onclick="window.open(this.href, 'twitter-share','width=550,height=235');return false;" class="twitter-icon tooltips"> <span class="tooltips">Twitter</span><img src="/images/twitter-icon.svg"/></a><a href="https://plus.google.com/share?url=http://pompeu.github.io/articles/tdd-intro2" onclick="window.open(this.href, 'google-plus-share','width=550,height=235');return false;" class="google-icon tooltips"> <span class="tooltips">Google Plus</span><img src="/images/google-plus-icon.svg"/></a></div></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'pompeublog';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-53520427-1', 'auto');
+ ga('send', 'pageview');</script><footer class="footer"><h2 class="footer-title">Pompeu - 2015</h2></footer><script src="/js/bower_components/rxjs/dist/rx.all.min.js"></script><script src="/js/bower_components/rxjs-dom/dist/rx.dom.js"></script><script src="/js/app.js"></script></body></html>
