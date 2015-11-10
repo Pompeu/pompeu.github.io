@@ -74,7 +74,7 @@ describe('testing module conversor de romanos', () => {
 Para rodar o teste vamos usar o mocha que foi instalado globalmente, usaremos  o comando :
 
 ```
-  mocha conversor-romanos.spect.js
+  mocha conversor-romanos.spec.js
 ```
 
 Feito isso, deverá aparecer uma mensagem de erro, pois ainda não criamos o módulo conversor-de-romanos.js na pasta models, e esse é o momento de criá-lo e nele fazer a implementação mais simples possível para que o teste passe e fique verde bem rápido.
