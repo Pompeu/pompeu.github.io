@@ -1,5 +1,13 @@
 {
- "tdd-intro2" : {
+  "nodevs-elixir" : {
+    "title" : "NodeJS vs Elixir Batalha Mortal",
+    "date"  : "Jan/2016",
+    "day" : "30",
+    "resumo" : "Teste de performance usando siege, apache benchmark e wrk, esse post vem para mostrar que NodeJS é muito performatico, e vale pena usar api de clusters",
+    "tags" : "NODE, ELIXIR, PERFORMANCE",
+    "url" : "http://pompeu.github.io/articles/nodevs-elixir"
+  },
+  "tdd-intro2" : {
     "title" : "Introdução ao TDD com NodeJS Parte 2",
     "date" : "Nov/2015",
     "day" : "09",
@@ -15,7 +23,7 @@
     "tags" : "TDD, NODE, MOCHA",
     "url" : "http://pompeu.github.io/articles/tdd-intro1"
   },
-	"promise-mito" : {
+  "promise-mito" : {
     "title" : "Brincadeira com Promises no Banheiro",
     "date"  : "Out/2015",
     "day"   : "13",
@@ -24,7 +32,7 @@
     "url"   : "http://pompeu.github.io/articles/promise-mito"
   },
 
-	 "koajs-todo" : {
+  "koajs-todo" : {
     "title" : "Criando Uma API Rest com KOAJS e Node4 ",
     "date"  : "Set/2015",
     "day"   : "28",
@@ -32,7 +40,7 @@
     "tags"  : "Node, TDD, KOA",
     "url"   : "http://pompeu.github.io/articles/koajs-todo"
   },
-	"resumo-pibic" : {
+  "resumo-pibic" : {
     "title" : "Rede de Conhecimentos",
     "date"  : "Set/2015",
     "day"   : "22",
@@ -49,5 +57,5 @@
     "tags"  : "Node, Promise, Async",
     "url"   : "http://pompeu.github.io/articles/promise-node"
   }
-   	
+
 }
