@@ -102,3 +102,5 @@ Esse teste foi feito com intuído de esclarecimento, mostrando que para o caso d
 # <a href="https://www.youtube.com/watch?v=K36BJz5kX6Q" target="_blank"> Teste Video </a>
 
 # <a href="https://www.youtube.com/watch?v=8Ng6TfAj7Sk" target="_blank"> Palesta Master Akita  </a>
+
+# <a href="http://www.akitaonrails.com/2015/12/03/the-obligatory-flame-war-phoenix-vs-node-js" target="_blank"> Flame War NodeJS vs Phoenix by Master Akita  </a>
