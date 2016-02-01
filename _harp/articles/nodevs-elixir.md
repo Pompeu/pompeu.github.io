@@ -40,7 +40,7 @@ router.get('/json',(req, res) => {
       res.json({"hello":"world"});
 });
 ```
-O caso do Elixir foi necessário criar usar controller padrão do Phoenix, adicionar o endpoint no aquivo de rotas e configurar a view de forma que ela envie um json. vejamos o como foi feito abaixo, 
+O caso do Elixir foi necessário criar um controller padrão do Phoenix, adicionar o endpoint no aquivo de rotas e configurar a view de forma que ela envie um json. vejamos o como foi feito abaixo, 
 
 Sera apresentado apenas o controller.
 
@@ -85,7 +85,7 @@ Com o uso http houve essa diferença imagine usando socktes? (fica ai um trabalh
  ![wrk-table](/images/ab_wrk_siege_imgs/wrk_reqtotal.png)
  ![wrk-table](/images/ab_wrk_siege_imgs/wrk_rps.png)
 
- Esses gráficos deixam claro que sim é o Elixir é muito bom e rápido se comprado com Python, ruby e php, mais quando submetido a testes com “gente grande” no mundo de alta performance o cenário fica complicado, quem sabe no futuro ele  melhore e possa bater de frente com NodeJS.
+ Esses gráficos deixam claro que sim é o Elixir é muito bom e rápido se comparado com Python, ruby e php, mais quando submetido a testes com “gente grande” no mundo de alta performance o cenário fica complicado, quem sabe no futuro ele  melhore e possa bater de frente com NodeJS.
 
  Um observação, eu escrevi um artigo acadêmico onde testei 7 tecnologias dentre elas  o GO e Java, elas em alguns casos foram ate  5x mais rápido que NodeJS, o que me leva a pensar que em um banchmark entre elixir e golang o resultado seria assustador.
  Artigo pode ser baixado e lido.
