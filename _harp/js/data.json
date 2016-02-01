@@ -1,5 +1,9 @@
 [ 
   {
+    "title" : "NodeJS Vs Elixir Batalha Mortal",
+    "url"   : "/articles/nodevs-elixir"
+  },
+  {
     "title" : "Introdução ao TDD com NodeJS 2",
     "url"   : "/articles/tdd-intro2"
   },
