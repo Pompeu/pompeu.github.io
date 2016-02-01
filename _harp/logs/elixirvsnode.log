@@ -1,0 +1,182 @@
+apps-test  vim 
+⬢  apps-test  ./ab.sh 4000 
+This is ApacheBench, Version 2.3 <$Revision: 1528965 $> 
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/ 
+Licensed to The Apache Software Foundation, http://www.apache.org/ 
+
+Benchmarking localhost (be patient) 
+  Completed 500 requests 
+  Completed 1000 requests 
+  Completed 1500 requests 
+  Completed 2000 requests 
+  Completed 2500 requests 
+  Completed 3000 requests 
+  Completed 3500 requests 
+  Completed 4000 requests 
+  Completed 4500 requests 
+  Completed 5000 requests 
+  Finished 5000 requests 
+
+
+  Server Software:        
+  Server Hostname:        localhost 
+  Server Port:            4000 
+
+  Document Path:          /api/json 
+  Document Length:        17 bytes 
+
+  Concurrency Level:      100 
+  Time taken for tests:   4.369 seconds 
+  Complete requests:      5000 
+  Failed requests:        0 
+  Total transferred:      1280000 bytes 
+  HTML transferred:       85000 bytes 
+  Requests per second:    1144.31 [#/sec] (mean) 
+  Time per request:       87.389 [ms] (mean) 
+Time per request:       0.874 [ms] (mean, across all concurrent requests) 
+  Transfer rate:          286.08 [Kbytes/sec] received 
+
+Connection Times (ms) 
+  min  mean[+/-sd] median   max 
+  Connect:        0    1   2.6      0      30 
+  Processing:    16   86  25.7     85     183 
+  Waiting:       16   86  25.8     85     183 
+  Total:         16   87  25.8     85     183 
+
+Percentage of the requests served within a certain time (ms) 
+  50%     85 
+  66%     96 
+  75%    102 
+  80%    105 
+  90%    120 
+  95%    133 
+  98%    152 
+  99%    163 
+100%    183 (longest request) 
+
+  ⬢  apps-test  ./siege.sh 4000 
+  ** SIEGE 3.0.5 
+  ** Preparing 100 concurrent users for battle. 
+  The server is now under siege... 
+  Lifting the server siege...      done. 
+
+  Transactions:           30159 hits 
+  Availability:          100.00 % 
+  Elapsed time:           29.54 secs 
+  Data transferred:          0.49 MB 
+  Response time:           0.10 secs 
+  Transaction rate:       1020.95 trans/sec 
+  Throughput:            0.02 MB/sec 
+  Concurrency:          99.75 
+  Successful transactions:       30159 
+  Failed transactions:            0 
+  Longest transaction:         0.25 
+  Shortest transaction:          0.01 
+
+  FILE: /var/log/siege.log 
+  You can disable this annoying message by editing 
+  the .siegerc file in your home directory; change 
+  the directive 'show-logfile' to false. 
+  [error] unable to create log file: Permission denied 
+
+  ⬢  apps-test  ./wrk.sh 4000 
+  Running 30s test @ http://localhost:4000/api/json 
+  2 threads and 400 connections 
+  Thread Stats   Avg      Stdev     Max   +/- Stdev 
+  Latency   189.00ms   64.04ms 385.54ms   67.31% 
+  Req/Sec     1.05k   531.41     2.33k    62.52% 
+  62747 requests in 30.05s, 15.33MB read 
+  Requests/sec:   2088.04 
+  Transfer/sec:    522.26KB
+
+
+
+  ⬢  apps-test  ./ab.sh 3000   
+  This is ApacheBench, Version 2.3 <$Revision: 1528965 $> 
+  Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/ 
+  Licensed to The Apache Software Foundation, http://www.apache.org/ 
+
+Benchmarking localhost (be patient) 
+  Completed 500 requests 
+  Completed 1000 requests 
+  Completed 1500 requests 
+  Completed 2000 requests 
+  Completed 2500 requests 
+  Completed 3000 requests 
+  Completed 3500 requests 
+  Completed 4000 requests 
+  Completed 4500 requests 
+  Completed 5000 requests 
+  Finished 5000 requests 
+
+
+  Server Software:        
+  Server Hostname:        localhost 
+  Server Port:            3000 
+
+  Document Path:          /api/json 
+  Document Length:        17 bytes 
+
+  Concurrency Level:      100 
+  Time taken for tests:   4.774 seconds 
+  Complete requests:      5000 
+  Failed requests:        0 
+  Total transferred:      1095000 bytes 
+  HTML transferred:       85000 bytes 
+  Requests per second:    1047.34 [#/sec] (mean) 
+  Time per request:       95.480 [ms] (mean) 
+Time per request:       0.955 [ms] (mean, across all concurrent requests) 
+  Transfer rate:          223.99 [Kbytes/sec] received 
+
+Connection Times (ms) 
+  min  mean[+/-sd] median   max 
+  Connect:        0    0   1.4      0      12 
+  Processing:    10   94  50.4     70     333 
+  Waiting:        6   94  50.2     69     328 
+  Total:         18   95  50.5     70     333 
+
+Percentage of the requests served within a certain time (ms) 
+  50%     70 
+  66%     83 
+  75%    114 
+  80%    133 
+  90%    169 
+  95%    200 
+  98%    245 
+  99%    284 
+100%    333 (longest request) 
+  ⬢  apps-test  ./siege.sh 3000 
+  ** SIEGE 3.0.5 
+  ** Preparing 100 concurrent users for battle. 
+  The server is now under siege... 
+  Lifting the server siege...      done. 
+
+  Transactions:           37094 hits 
+  Availability:          100.00 % 
+  Elapsed time:           29.90 secs 
+  Data transferred:          0.60 MB 
+  Response time:           0.08 secs 
+  Transaction rate:       1240.60 trans/sec 
+  Throughput:            0.02 MB/sec 
+  Concurrency:          99.65 
+  Successful transactions:       37094 
+  Failed transactions:            0 
+  Longest transaction:         0.20 
+  Shortest transaction:          0.01 
+
+  FILE: /var/log/siege.log 
+  You can disable this annoying message by editing 
+  the .siegerc file in your home directory; change 
+  the directive 'show-logfile' to false. 
+  [error] unable to create log file: Permission denied 
+  ⬢  apps-test  ./wrk.sh 3000  
+  Running 30s test @ http://localhost:3000/api/json 
+  2 threads and 400 connections 
+  Thread Stats   Avg      Stdev     Max   +/- Stdev 
+  Latency   115.94ms   81.49ms   1.98s    98.07% 
+  Req/Sec     1.72k   218.71     2.56k    73.50% 
+  102978 requests in 30.09s, 22.00MB read 
+  Socket errors: connect 0, read 0, write 0, timeout 165 
+  Requests/sec:   3422.85 
+  Transfer/sec:    748.75KB 
+  ⬢  apps-test   
