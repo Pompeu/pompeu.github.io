@@ -7,7 +7,6 @@ let listEven = [];
 listOdd     = list.filter(checkOdd);
 listEven    = list.filter(checkEven);
 
-
 function checkEven(n) {
   return n%2 === 0;
 }
@@ -18,7 +17,7 @@ function checkOdd (n) {
 console.log(listOdd);
 console.log(listEven);
 /*
-  389
-  54
-  335
-*/
+   389
+   54
+   335
+   */

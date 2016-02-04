@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="pt-br"><head><title>Blog Limp</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/><meta name="description" content="Blog e Página pessoal, de um estudante e desenvolvedor, com foco em algoritmos, programação funcional e principalmente performance com uma pegada que busca interação entre academia e mercado, C/C++,  Java , Javascritp(nodeJS) e Python são as principais tecnologias abordadas."/><link rel="stylesheet" href="/stylus/style.css"/><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css"/><link rel="icon" href="/images/favicon.ico"/></head><body><header class="header"><div class="design-by"><a href="https://twitter.com/EulerGotardo" target="_blank">Design by @EulerGotardo</a></div><a href="/"><div class="mini-menu"></div></a><a href="/"><div class="header-img"></div></a><h2 class="heading">Web Developer, Brasilian jiujitsu Fighter and Student<a href="#inicio" role="button"><div class="down-img"></div></a><main class="heading-menu"><a href="/" class="heading-menu-li">Posts</a><span class="heading-menu-li-separetor">|</span><a href="/tutoriais" class="heading-menu-li">Tutoriais</a><span class="heading-menu-li-separetor">|</span><a href="/about" class="heading-menu-li">About</a></main></h2></header><div class="social-cont"><div class="social-img"><a href="https://twitter.com/Pompeulimp" class="img-twitter"></a><a href="https://www.youtube.com/channel/UCvSz51aSjjMNJ-L522hJUJg" class="img-youtube"></a><a href="https://www.facebook.com/itacir.pompeu" class="img-facebook"></a><a href="https://github.com/pompeu" class="img-github"></a></div></div><div class="search-input"><div class="styled-input"> <input id="q" type="text" required="required" autocomplete="off"/><label id="inicio" name="inicio">Buscar ...</label></div></div><div class="results"><ul id="results"></ul></div><div class="post-item"><div class="post-details"><div class="post-center"><a href="/"><button class="voltar-img tooltips"> <span class="tooltips">voltar</span><img src="/images/ic_arrow_back_48px.svg"/></button></a><br/><br/><br/><div class="post-details"><center>
+ <h1> Callback sync e async, Entendo process.nextTick </h1>
+</center>
+
+ <center>
+  <img src="/images/nexttick.png" alt="wrk-table">
+ </center>
+
+<p>  Essa imagem representa o ciclo do event loop do NodeJS, ele trabalha de forma simples como um <em> handler </em> que fica procurando eventos para resolvelos, isso é uma definição baisca, leia mais sobre em :<a href="https://strongloop.com/strongblog/node-js-event-loop/" target="_blanck"> event loop </a>, por sinal esse post do strongloop, faz comparações de código C# e Ruby vale a pena ler.</p>
+<h1>Callback Sync Vs Async</h1><p>Sim se você não sabia ainda, pode sim existir callback sincrono, é isso pode impactar no seu sistema, porem  de modo geral, são callbacks criados por nós mesmo quando estamos desenvolvendo nosso modulus, vamos ver um exemplo.</p>
+<pre><code class="language-js">&#39;use strict&#39;;
+
+let sum = (a, b, cb) =&gt; cb(a + b);
+
+sum(1, 2, res =&gt; {
+      console.log(res);
+});
+
+console.log(&quot;soma&quot;);
+</code></pre>
+<p>Caso você já seja acostumado com javascript deve imaginar que a string &quot;soma&quot;, sera impressa no console, antes do valor do callback, porem ao testar esse código surpresa? a resposta vem antes, veja o resultado abaixo.</p>
+<pre><code class="language-sh">node cb-sync.js 
+3
+soma
+</code></pre>
+<center>
+ <img src="/images/bebe-assustado.jpg" alt="wrk-table">
+ </center>
+
+<p> Confesso que primeira vez, que vi fiquei assustado, pois pense vocês eu estava tendo um problema em um projeto com um banco de dados SQL, onde havia vários callback dessa forma, havia casos onde um simples request local demorar alguns segundos era assustador, até parecia que estava usando outras linguagens.</p>
+<p> Porem depois de perder algum tempo estudando e depurando o código percebi que o  problema eram alguns callbacks(sincronos), eles estavam parando o eventloop, assim eu tive procurar motivo, encontrei, e consegui resolver esse probleminha assim melhorando e muito a performance buscas. Veja como foi resolvido o problema usando process.nextTick, no próximo código de exemplo.</p>
+<pre><code class="language-js"> &#39;use strict&#39;;
+
+ let sum = (a, b, cb) =&gt; process.nextTick(
+ () =&gt; {
+       cb(a+b);
+ });
+
+ sum(1, 2, res =&gt; {
+       console.log(res);
+ });
+
+ console.log(&quot;soma&quot;);
+</code></pre>
+<p> Vamos entender esse código? primeiro tudo que mudou nele foi, eu usei process.nextTick,
+ para dar continuidade no event loop, com isso &quot;a fila andou KKK&quot;, e como resposta o desempenho melhorou certo.</p>
+<p> O problema com o banco de dados, foi resolvido de forma similar, eu criei um modulo que usava para todos callback o process.netTick era chamado e pronto problema resolvido.</p>
+<p> Vamos ver agora qual seria o resultado apresentado no console da execução desse do modulo suma?</p>
+<pre><code class="language-sh"> node cb-async.js 
+ soma
+ 3
+</code></pre>
+<p> Ou seja o event loop não parou, o NodeJS trabalhou da forma esperada que é assincronamente, mostrando o fator que o faz ser poderoso.</p>
+<h1>Concluindo</h1><p>Fica essa simples dica sobre, como a falta de estudar a API da plataforma/linguagem onde se trabalha, pode ser prejudicial a ao projeto, entender  como a sua ferramenta funciona é de entrama importância, e cuidado com os callbacks síncronos :P.</p></div><div class="compartilhar"><h1>Compartilhe</h1><div class="icon"><a href="https://www.facebook.com/sharer/sharer.php?u=http://pompeu.github.io/articles/process-nexttick" onclick="window.open(this.href, 'facebook-share','width=550,height=235');return false;" class="face-icon tooltips"><span class="tooltips">Facebook</span><img src="/images/facebook-icon.svg"/></a><a href="https://twitter.com/intent/tweet?url=http://pompeu.github.io/articles/process-nexttick&amp;text=Entender bem como funciona o do Event Loop do NodeJS vale muito a pena,pois evitra que erros ocorram, conheça o process.nextTick&amp;via=Pompeulimp" onclick="window.open(this.href, 'twitter-share','width=550,height=235');return false;" class="twitter-icon tooltips"> <span class="tooltips">Twitter</span><img src="/images/twitter-icon.svg"/></a><a href="https://plus.google.com/share?url=http://pompeu.github.io/articles/process-nexttick" onclick="window.open(this.href, 'google-plus-share','width=550,height=235');return false;" class="google-icon tooltips"> <span class="tooltips">Google Plus</span><img src="/images/google-plus-icon.svg"/></a></div></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'pompeublog';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-53520427-1', 'auto');
+ ga('send', 'pageview');</script><footer class="footer"><h2 class="footer-title">Pompeu - 2015</h2></footer><script src="/js/bower_components/rxjs/dist/rx.all.min.js"></script><script src="/js/bower_components/rxjs-dom/dist/rx.dom.js"></script><script src="/js/app.js"></script><script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script></body></html>

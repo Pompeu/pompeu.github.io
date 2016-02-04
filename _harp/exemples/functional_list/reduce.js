@@ -8,18 +8,17 @@ let sumEven = 0;
 sum     = list.reduce((n, i) => n+i , 0);
 
 sumOdd  = list
-            .filter(n => n%2 === 0)
-            .reduce((n,i) => n+i,0);
+.filter(n => n%2 === 0)
+.reduce((n,i) => n+i,0);
 
 sumEven = list
-            .filter(n => n%2 !== 0)
-            .reduce((n,i) => n+i,0);
+.filter(n => n%2 !== 0)
+.reduce((n,i) => n+i,0);
 
 console.log(sum);
 console.log(sumOdd);
 console.log(sumEven);
-/*
-  389
-  54
-  335
-*/
+
+// 389
+// 54
+// 335

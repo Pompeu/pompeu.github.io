@@ -10,8 +10,8 @@ list.forEach(n => {
 });
 
 list.forEach((n,i) => {
-  if(n % 2 === 0) listEven.push(list[i]);
-  else listAdd.push(list[i]);
+  if(n % 2 === 0) { listEven.push(list[i]); }
+  else { listAdd.push(list[i]);}
   sum += list[i];
 });
 

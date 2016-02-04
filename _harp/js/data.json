@@ -1,4 +1,8 @@
-[ 
+[
+  {
+    "title" : "Callback sync e async, Entendo process.nextTick",
+    "url"   : "/articles/process-nexttick"
+  },
   {
     "title" : "NodeJS Vs Elixir Batalha Mortal",
     "url"   : "/articles/nodevs-elixir"
@@ -24,7 +28,7 @@
     "url"   : "/articles/resumo-pibic"
   },
   { 
-   "title" : "Promise Node",
+    "title" : "Promise Node",
     "url"   : "/articles/promise-node"
   }
 ]

@@ -1,4 +1,12 @@
 {
+  "process-nexttick" : {
+    "title" : "Callback sync e async, Entendo process.nextTick",
+    "date"  : "Feb/2016",
+    "day" : "04",
+    "resumo" : "Entender bem como funciona o do Event Loop do NodeJS vale muito a pena,pois evitra que erros ocorram, conheça o process.nextTick",
+    "tags" : "NODEJS, ASYNC,PROCESS ",
+    "url" : "http://pompeu.github.io/articles/process-nexttick"
+  },
   "nodevs-elixir" : {
     "title" : "NodeJS vs Elixir Batalha Mortal",
     "date"  : "Jan/2016",
